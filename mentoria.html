@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentoria para Concursos Públicos | magismari</title>
+    <meta name="description" content="Conheça a Mentoria em Grupo e/ou Individual para Concursos Públicos da Mari Machado. Estratégias reais para sua aprovação.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ─── Page-specific styles ─── */
+        .page-hero {
+            background: radial-gradient(ellipse at 60% 0%, #6a15b0 0%, #42086f 40%, #2a0550 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero .hero-stars {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+            background-size: 80px 80px, 200px 200px;
+            background-position: 0 0, 40px 40px;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .page-hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+        .page-hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.15;
+            color: var(--white);
+        }
+        .page-hero-text h1 span { color: var(--gold); }
+        .page-hero-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.75;
+        }
+        .page-hero-img {
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--shadow), var(--glow-purple);
+            border: 3px solid rgba(255,255,255,0.15);
+            aspect-ratio: 4/5;
+        }
+        .page-hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold);
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+        }
+        .back-link:hover { opacity: 1; }
+
+        /* ─── O que é ─── */
+        .oque-e {
+            padding: 90px 0;
+            background: linear-gradient(180deg, #35065a 0%, #3a0762 100%);
+        }
+        .oque-e-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .oque-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(232,149,32,0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .oque-card-icon {
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #1a0030;
+            flex-shrink: 0;
+        }
+        .oque-card h3 {
+            font-size: 1.15rem;
+            color: var(--gold);
+        }
+        .oque-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+
+        /* ─── Modalidades ─── */
+        .modalidades {
+            padding: 90px 0;
+            background: linear-gradient(135deg, #f7f2ed 0%, #ede4f8 100%);
+        }
+        .modalidades .section-header h2 { color: var(--purple-dark); }
+        .modalidades-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .modalidade-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 24px rgba(90,16,150,0.12);
+            border-top: 5px solid var(--purple-mid);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .modalidade-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 36px rgba(90,16,150,0.2);
+        }
+        .modalidade-card h3 {
+            font-size: 1.4rem;
+            color: var(--purple-dark);
+        }
+        .modalidade-card .tag {
+            display: inline-block;
+            background: #f0e4ff;
+            color: var(--purple-mid);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            font-size: 0.82rem;
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            width: fit-content;
+            letter-spacing: 0.5px;
+        }
+        .modalidade-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .modalidade-card ul li {
+            display: flex;
+            gap: 0.7rem;
+            align-items: flex-start;
+            color: #3a2060;
+            font-size: 0.95rem;
+        }
+        .modalidade-card ul li i {
+            color: var(--purple-mid);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        /* ─── Encontros (reutilizado do site principal) ─── */
+        .encontros-alt {
+            padding: 90px 0;
+            background: linear-gradient(180deg, #42086f 0%, #4d0f85 100%);
+        }
+
+        /* ─── Pilares (reutilizado) ─── */
+        .pilares-alt {
+            padding: 90px 0;
+            background: linear-gradient(180deg, #3a0762 0%, #35065a 100%);
+        }
+        .pilares-alt .section-header h2 { color: var(--gold); }
+        .pilares-alt .pilar-card {
+            background: rgba(255,255,255,0.07);
+            border-top: 4px solid var(--gold);
+            box-shadow: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: none;
+        }
+        .pilares-alt .pilar-card:hover {
+            background: rgba(255,255,255,0.12);
+            box-shadow: var(--glow-gold);
+        }
+        .pilares-alt .pilar-card h3 { color: var(--white); }
+
+        /* ─── Público Alvo (página) ─── */
+        .publico-page {
+            padding: 90px 0;
+            background: linear-gradient(135deg, #f7f2ed 0%, #ede4f8 100%);
+        }
+        .publico-page .section-header h2 { color: var(--purple-dark); }
+        .publico-page .section-header p { color: #5a3080; }
+        .publico-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .publico-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--white);
+            border: 2px solid var(--purple-mid);
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--purple-dark);
+            box-shadow: 0 2px 12px rgba(90,16,150,0.1);
+        }
+        .publico-tag i { color: var(--purple-mid); }
+
+        /* ─── CTA Final ─── */
+        .cta-final {
+            padding: 100px 0;
+            background: radial-gradient(ellipse at 50% 50%, #6a15b0 0%, #3a0762 60%, #2a0550 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-final .hero-stars {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+            background-size: 80px 80px, 200px 200px;
+            background-position: 0 0, 40px 40px;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .cta-final-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .cta-final h2 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            color: var(--white);
+            max-width: 700px;
+        }
+        .cta-final h2 span { color: var(--gold); }
+        .cta-final p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 550px;
+        }
+        .cta-final-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* ─── Responsivo ─── */
+        @media (max-width: 900px) {
+            .page-hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .page-hero-text { align-items: center; }
+            .page-hero-img { max-width: 320px; margin: 0 auto; }
+            .page-hero-text h1 { font-size: 2.3rem; }
+        }
+        @media (max-width: 700px) {
+            .oque-e-grid { grid-template-columns: 1fr; }
+            .modalidades-grid { grid-template-columns: 1fr; }
+            .cta-final h2 { font-size: 1.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">magismari<span class="dot">.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#mentorias">Mentorias</a></li>
+                <li><a href="index.html#sobre">Sobre Mim</a></li>
+                <li><a href="index.html#encontros">Encontros</a></li>
+                <li><a href="index.html#provas">Aprovações</a></li>
+                <li><a href="index.html#contato">Contato</a></li>
+            </ul>
+            <a href="index.html#contato" class="cta-button nav-cta">Quero Ser Aprovado</a>
+        </div>
+    </nav>
+
+    <!-- Hero da Página -->
+    <section class="page-hero">
+        <div class="hero-stars"></div>
+        <div class="container page-hero-content">
+            <div class="page-hero-text">
+                <a href="index.html#mentorias" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Voltar às Mentorias
+                </a>
+                <span class="hero-badge">Mentoria Concursos Públicos</span>
+                <h1>Mentoria em Grupo<br>e/ou <span>Individual</span></h1>
+                <p>Orientação estratégica e personalizada para quem deseja acelerar a aprovação em concursos públicos de nível médio e superior. O método que já aprovou dezenas de concurseiros em todo o Brasil.</p>
+                <div class="hero-buttons">
+                    <a href="https://pay.kiwify.com.br/jfh9RNE" target="_blank" rel="noopener" class="cta-button pulse">Quero Participar</a>
+                    <a href="#como-funciona" class="hero-secondary-btn">Como Funciona</a>
+                </div>
+            </div>
+            <div class="page-hero-img">
+                <img src="assets/12.jpg" alt="Mari Machado — Mentora para Concursos Públicos">
+            </div>
+        </div>
+    </section>
+
+    <!-- O que é a Mentoria -->
+    <section class="oque-e" id="como-funciona">
+        <div class="container">
+            <div class="section-header center">
+                <h2>O que é a Mentoria?</h2>
+                <p>Uma orientação focada, prática e personalizada para transformar sua rotina de estudos</p>
+            </div>
+            <div class="oque-e-grid">
+                <div class="oque-card animate-card">
+                    <div class="oque-card-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Disciplinas Mais Cobradas</h3>
+                    <p>Identificamos juntos quais disciplinas têm maior peso no seu edital e concentramos esforços nas matérias que realmente fazem a diferença na sua nota.</p>
+                </div>
+                <div class="oque-card animate-card">
+                    <div class="oque-card-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Construção do Quadro de Horários</h3>
+                    <p>Montamos uma grade de estudos realista e sustentável para a sua rotina, dividindo o tempo de forma inteligente entre as disciplinas do edital.</p>
+                </div>
+                <div class="oque-card animate-card">
+                    <div class="oque-card-icon"><i class="fas fa-map"></i></div>
+                    <h3>Mapa da Mina 💎</h3>
+                    <p>Método exclusivo da Mari Machado: estratégias de estudo ativo, revisões sistemáticas e construção de material que encurtam o caminho até a aprovação.</p>
+                </div>
+                <div class="oque-card animate-card">
+                    <div class="oque-card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Preparação Estratégica</h3>
+                    <p>Com anos de experiência no mundo dos concursos, a Mari te ensina a estudar com estratégia — não apenas quantidade, mas qualidade de estudo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modalidades -->
+    <section class="modalidades">
+        <div class="container">
+            <div class="section-header center">
+                <h2>Modalidades de Mentoria</h2>
+                <p>Escolha o formato que melhor se encaixa no seu momento</p>
+            </div>
+            <div class="modalidades-grid">
+                <div class="modalidade-card animate-card">
+                    <span class="tag">MENTORIA EM GRUPO</span>
+                    <h3>Grupo</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Encontros virtuais em grupo com outros concurseiros</li>
+                        <li><i class="fas fa-check-circle"></i> Troca de experiências e motivação coletiva</li>
+                        <li><i class="fas fa-check-circle"></i> Custo mais acessível</li>
+                        <li><i class="fas fa-check-circle"></i> 04 encontros semanais online</li>
+                        <li><i class="fas fa-check-circle"></i> Acesso ao método Mapa da Mina 💎</li>
+                        <li><i class="fas fa-check-circle"></i> Ideal para concursos de nível médio e superior</li>
+                    </ul>
+                </div>
+                <div class="modalidade-card animate-card">
+                    <span class="tag">MENTORIA INDIVIDUAL</span>
+                    <h3>Individual</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Atenção 100% personalizada e exclusiva</li>
+                        <li><i class="fas fa-check-circle"></i> Plano de estudos feito sob medida para o seu edital</li>
+                        <li><i class="fas fa-check-circle"></i> Flexibilidade de horários</li>
+                        <li><i class="fas fa-check-circle"></i> Acompanhamento próximo do seu progresso</li>
+                        <li><i class="fas fa-check-circle"></i> Acesso ao método Mapa da Mina 💎</li>
+                        <li><i class="fas fa-check-circle"></i> Ideal para quem busca resultado mais rápido</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Encontros -->
+    <section class="encontros-alt">
+        <div class="container">
+            <div class="section-header center">
+                <h2>Como Serão os Encontros?</h2>
+            </div>
+            <div class="encontros-box">
+                <div class="encontros-number-block">
+                    <span class="encontros-big-num">04</span>
+                    <span class="encontros-num-label">Encontros Virtuais</span>
+                </div>
+                <div class="encontros-text">
+                    <p>O mentorado terá acesso a <strong>04 encontros virtuais</strong> de mentoria raiz e real. O aluno terá acesso a <strong>um encontro por semana.</strong></p>
+                    <p>A mentoria é <strong>FOCADA</strong> para quem <strong>DESEJA FICAR COMPETITIVO E SE DIFERENCIAR EM CONCURSOS PÚBLICOS.</strong></p>
+                    <p>Todas as sessões acontecem de forma <strong>online</strong>, com acesso de qualquer lugar do Brasil.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilares -->
+    <section class="pilares-alt">
+        <div class="container">
+            <div class="section-header center">
+                <h2>Pilares da Mentoria da Mari Machado</h2>
+                <p>Os 6 pilares que estruturam o Método Mapa da Mina 💎</p>
+            </div>
+            <div class="pilares-grid">
+                <div class="pilar-card animate-card">
+                    <div class="pilar-num">1</div>
+                    <h3>Organização</h3>
+                </div>
+                <div class="pilar-card animate-card">
+                    <div class="pilar-num">2</div>
+                    <h3>Estudo ATIVO</h3>
+                </div>
+                <div class="pilar-card animate-card">
+                    <div class="pilar-num">3</div>
+                    <h3>Revisões SISTEMÁTICAS</h3>
+                </div>
+                <div class="pilar-card animate-card">
+                    <div class="pilar-num">4</div>
+                    <h3>Construção de Material</h3>
+                </div>
+                <div class="pilar-card animate-card">
+                    <div class="pilar-num">5</div>
+                    <h3>Construção de Base</h3>
+                </div>
+                <div class="pilar-card animate-card">
+                    <div class="pilar-num">6</div>
+                    <h3>Prova</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Público Alvo -->
+    <section class="publico-page">
+        <div class="container">
+            <div class="section-header center">
+                <h2>Para Quem é a Mentoria?</h2>
+                <p>A mentoria é voltada para pessoas que desejam ser orientadas nos estudos para concursos públicos de <strong>nível médio e superior.</strong></p>
+            </div>
+            <div class="publico-tags">
+                <div class="publico-tag"><i class="fas fa-user-graduate"></i> Iniciantes nos concursos</div>
+                <div class="publico-tag"><i class="fas fa-redo"></i> Concurseiros que já tentaram e não passaram</div>
+                <div class="publico-tag"><i class="fas fa-clock"></i> Quem tem pouco tempo e precisa de foco</div>
+                <div class="publico-tag"><i class="fas fa-route"></i> Quem não sabe por onde começar</div>
+                <div class="publico-tag"><i class="fas fa-trophy"></i> Quem quer se diferenciar da concorrência</div>
+                <div class="publico-tag"><i class="fas fa-briefcase"></i> Candidatos de nível médio e superior</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-final">
+        <div class="hero-stars"></div>
+        <div class="container cta-final-content">
+            <h2>Pronto para <span>acelerar</span> sua aprovação?</h2>
+            <p>Dê o primeiro passo com quem já passou por isso e sabe o caminho certo. Junte-se aos mentorados da Mari Machado!</p>
+            <div class="cta-final-btns">
+                <a href="https://pay.kiwify.com.br/jfh9RNE" target="_blank" rel="noopener" class="cta-button pulse">Quero Participar da Mentoria</a>
+                <a href="index.html#contato" class="hero-secondary-btn">Fale com a Mari</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>magismari<span class="dot">.</span></h3>
+                <p>Mari Machado | Mentoria Concursos Públicos</p>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Maricélia Machado. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para âncoras internas
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animação fade-in ao rolar
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.animate-card').forEach(el => observer.observe(el));
+
+        // Sombra da navbar ao rolar
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            navbar.style.boxShadow = window.scrollY > 10
+                ? '0 4px 24px rgba(0,0,0,0.4)'
+                : 'none';
+        });
+    </script>
+</body>
+</html>
