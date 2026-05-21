@@ -719,8 +719,8 @@ img {
 }
 .prova-item img {
     width: 100%;
-    height: 260px;
-    object-fit: cover;
+    height: auto;
+    display: block;
 }
 
 /* ─── Contato ─────────────────────────────── */
