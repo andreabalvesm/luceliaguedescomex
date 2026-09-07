@@ -471,6 +471,20 @@ h1, h2, h3, h4 {
     margin-bottom: 1rem;
 }
 
+.product-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gold-soft);
+    background: rgba(215,168,90,0.1);
+    border: 1px solid rgba(215,168,90,0.3);
+    border-radius: 999px;
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
 .product-card h3 {
     font-size: 1.6rem;
     margin-bottom: 1rem;
@@ -613,6 +627,23 @@ h1, h2, h3, h4 {
 .faq summary{ font-weight:700; cursor:pointer; }
 
 .course-actions-bottom { padding: 2.2rem 0; }
+
+.sales-image {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.28);
+    border: 1px solid rgba(255,255,255,0.1);
+    max-width: 420px;
+    margin: 1.1rem 0 1.3rem;
+}
+
+.sales-image img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+}
 
 .sales-hero {
     padding: 4rem 0 2rem;
