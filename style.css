@@ -119,15 +119,24 @@ h1, h2, h3, h4 {
 }
 
 .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     font-family: var(--font-heading);
     font-size: 1.2rem;
     font-weight: 800;
     letter-spacing: 0.08rem;
     color: var(--white);
+    line-height: 1.1;
 }
 
 .logo span {
-    color: var(--gold-soft);
+    color: var(--muted);
+    font-size: 0.48rem;
+    letter-spacing: 0.12rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
 }
 
 .nav-links {
@@ -169,64 +178,77 @@ h1, h2, h3, h4 {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.18fr 0.82fr;
     align-items: start;
-    gap: 3rem;
+    gap: 2.5rem;
 }
 
 .hero-content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.35rem;
+    justify-content: flex-start;
+    padding-top: 0;
+    margin-top: 0;
+    min-height: 620px;
 }
 
 .hero-badge {
     display: inline-flex;
     align-self: flex-start;
-    border: 1px solid rgba(215,168,90,0.4);
-    background: rgba(215,168,90,0.08);
+    border: 1px solid rgba(215,168,90,0.42);
+    background: rgba(215,168,90,0.06);
     color: var(--gold-soft);
-    padding: 0.5rem 1rem;
+    padding: 0.55rem 1.1rem;
     border-radius: 999px;
-    font-size: 0.8rem;
-    letter-spacing: 0.06rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12rem;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .hero-highlight-text {
-    font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 2.2vw, 2.5rem);
     color: var(--gold-soft);
-    font-weight: 800;
-    margin-top: 0.2rem;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.08;
+    margin-top: 0.15rem;
+    letter-spacing: -0.025em;
+    max-width: 640px;
 }
 
 .hero-content h1 {
-    font-family: 'Playfair Display', var(--font-heading), serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 500;
-    font-size: clamp(2rem, 3.2vw, 3.4rem);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    color: var(--white);
+    font-style: normal;
+    font-size: clamp(2.4rem, 3.7vw, 5rem);
+    line-height: 0.96;
+    letter-spacing: -0.05em;
+    color: rgba(255,255,255,0.96);
+    max-width: 720px;
 }
 
 .hero-highlight {
     font-style: italic;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--gold-soft);
 }
 
 .hero-desc {
-    font-size: 1.15rem;
-    max-width: 560px;
-    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 620px;
+    line-height: 1.6;
+    color: rgba(248, 251, 255, 0.8);
+    margin-top: 0.25rem;
 }
 
 .hero-buttons {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 .hero-secondary-btn {
@@ -251,7 +273,8 @@ h1, h2, h3, h4 {
     align-items: center;
     flex-wrap: wrap;
     gap: 1.4rem;
-    margin-top: 0.4rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.2rem;
 }
 
 .hero-socials {
@@ -293,6 +316,7 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    min-height: 620px;
 }
 
 .orb {
@@ -320,13 +344,14 @@ h1, h2, h3, h4 {
 .hero-photo-card {
     position: relative;
     z-index: 1;
-    width: min(100%, 420px);
+    width: min(100%, 470px);
     aspect-ratio: 3 / 4;
     background: rgba(11, 24, 33, 0.72);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 30px;
     overflow: hidden;
     box-shadow: var(--shadow);
+    margin-top: 0;
 }
 
 .hero-photo-card img {
@@ -342,26 +367,29 @@ h1, h2, h3, h4 {
     bottom: 1.2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
-    background: rgba(6, 19, 29, 0.7);
+    gap: 0.2rem;
+    background: rgba(6, 19, 29, 0.72);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 18px;
     padding: 0.8rem 1rem;
     backdrop-filter: blur(8px);
 }
 
-.photo-badge span {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12rem;
-    color: rgba(255,255,255,0.7);
-}
-
-.photo-badge strong {
-    font-size: 1.5rem;
+.photo-badge .badge-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.1;
     color: var(--gold-soft);
     font-family: var(--font-heading);
-    letter-spacing: 0.05rem;
+    letter-spacing: 0.04rem;
+}
+
+.photo-badge small {
+    font-size: 0.62rem;
+    line-height: 1.4;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
 }
 
 .about, .products, .video-section, .strategy, .cta-final {
