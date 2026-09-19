@@ -39,6 +39,17 @@ document.addEventListener('DOMContentLoaded', () => {
         item.style.transitionDelay = `${i * 100}ms`;
     });
 
+    // Approvals carousel arrows
+    document.querySelectorAll('.approvals-carousel').forEach(carousel => {
+        const track = carousel.querySelector('.approvals-track');
+        const prev = carousel.querySelector('.approvals-arrow.prev');
+        const next = carousel.querySelector('.approvals-arrow.next');
+        if (!track || !prev || !next) return;
+        const scrollAmount = () => track.clientWidth * 0.7;
+        prev.addEventListener('click', () => track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+        next.addEventListener('click', () => track.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+    });
+
     // Navbar: add scrolled class for subtle shadow
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
