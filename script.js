@@ -29,6 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.animate-card').forEach(el => observer.observe(el));
 
+    // Founder photo — swap for the YouTube video on click
+    document.querySelectorAll('.founder-video-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const card = document.createElement('div');
+            card.className = 'founder-photo-card';
+            card.innerHTML = `<iframe src="https://www.youtube.com/embed/${trigger.dataset.youtubeId}?autoplay=1&rel=0&playsinline=1" title="Apresentação Lucélia Guedes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+            trigger.replaceWith(card);
+        });
+    });
+
     // Stagger pilar cards
     document.querySelectorAll('.pilar-card').forEach((card, i) => {
         card.style.transitionDelay = `${i * 80}ms`;

@@ -643,6 +643,116 @@ h1, h2, h3, h4 {
     display: block;
 }
 
+.founder-video-trigger {
+    padding: 0;
+    background: #000;
+    cursor: pointer;
+    font: inherit;
+}
+
+.founder-video-trigger::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+}
+
+.founder-play {
+    position: absolute;
+    left: 50%;
+    bottom: 2rem;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--white);
+}
+
+.founder-play-icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #0a1f2d;
+    font-size: 1.5rem;
+    padding-left: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.founder-play-label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    white-space: nowrap;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.founder-video-trigger:hover .founder-play-icon,
+.founder-video-trigger:focus-visible .founder-play-icon {
+    transform: scale(1.08);
+    background: var(--gold-soft);
+}
+
+.founder-photo-card iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.testimonials {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, #0a1f2d 0%, #0e2737 100%);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 340px));
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.proof-card {
+    aspect-ratio: 9 / 16;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    background: #000;
+}
+
+.proof-card video,
+.proof-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.proof-card video {
+    object-fit: contain;
+}
+
+.proof-card-image {
+    aspect-ratio: auto;
+    background: #efeae2;
+}
+
+.proof-card-image img {
+    height: auto;
+}
+
+@media (max-width: 900px) {
+    .testimonials-grid {
+        grid-template-columns: minmax(0, 360px);
+    }
+}
+
 .founder-content h2 {
     font-size: clamp(2rem, 3vw, 3rem);
     margin-bottom: 0.3rem;
