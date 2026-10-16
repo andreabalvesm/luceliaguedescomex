@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // "Minha exportação em 8 perguntas" quick check
     document.querySelectorAll('.quiz-list').forEach(list => {
         const result = list.parentElement.querySelector('.quiz-result');
+        const footer = list.parentElement.querySelector('.quiz-footer');
         const items = [...list.querySelectorAll('li')];
 
         list.addEventListener('click', e => {
@@ -125,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const answered = items.filter(li => li.querySelector('[aria-pressed="true"]'));
             const pending = items.filter(li => li.querySelector('[data-v="nao"][aria-pressed="true"]')).length;
+            if (footer) footer.classList.toggle('is-done', answered.length === items.length);
             if (answered.length < items.length) {
                 result.textContent = `${answered.length} de ${items.length} respondidas.`;
             } else if (pending === 0) {
