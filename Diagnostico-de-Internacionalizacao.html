@@ -129,6 +129,16 @@ ul.clist li::before{content:"";flex:0 0 10px;height:10px;margin-top:6px;border-r
 .gaps h4{margin:6px 0 0;font-size:14px}
 .gaps ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px;display:flex;flex-direction:column;gap:3px}
 .empty{color:var(--muted);font-size:14px;padding:4px 0}
+/* mensagem do nível */
+.msg{display:flex;flex-direction:column;gap:10px;padding:16px 18px;border-radius:10px;border:1px solid color-mix(in srgb,var(--c) 45%,var(--line));background:color-mix(in srgb,var(--c) 10%,var(--surface))}
+.msg h3{margin:0;font-family:var(--display);font-size:20px;line-height:1.25;color:var(--ink)}
+.msg h4{margin:4px 0 0;font-size:15px}
+.msg p{margin:0}
+.msg .lead{font-weight:700;font-size:16px}
+.msg ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.msg .course{font-weight:700}
+.msg .close{font-weight:700;color:var(--ink)}
+.msg .tag{font-family:var(--display);font-weight:600}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:6px;font-size:14px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -259,6 +269,60 @@ const CONSULTORIAS = {
     "Estratégias e Modalidades de Acesso ao Mercado Internacional"],
 };
 
+// Mensagem exibida no resultado de cada nível
+const MENSAGENS = {
+  "INICIANTE":{
+    titulo:"SUA EMPRESA ESTÁ NO NÍVEL INICIANTE",
+    lead:"O primeiro passo para exportar é preparar sua empresa!",
+    textos:[
+      "O resultado do diagnóstico indica que sua empresa está na fase inicial de maturidade exportadora e precisa desenvolver aspectos importantes para atuar no mercado internacional.",
+      "Neste momento, é fundamental fortalecer a organização do negócio, conhecer os procedimentos de exportação, avaliar as exigências técnicas e regulatórias e preparar seus produtos ou serviços para atender novos mercados."],
+    passosTitulo:"Por onde começar?",
+    passos:[
+      "Avaliar a regularização e as certificações necessárias para seus produtos.",
+      "Fortalecer a identidade da marca e a apresentação comercial da empresa.",
+      "Conhecer os procedimentos básicos de exportação.",
+      "Avaliar a adequação dos produtos, embalagens e capacidade produtiva.",
+      "Desenvolver um planejamento inicial para a internacionalização."],
+    curso:"O curso “Exportar, Você Também Pode!” ajudará você a compreender os primeiros passos e identificar o que sua empresa precisa desenvolver para começar sua jornada internacional.",
+    fecho:"Lembre-se: sua empresa não precisa ser grande para exportar. Precisa estar preparada!",
+    tag:"🌎 O mundo pode ser o próximo mercado da sua empresa."},
+  "INTERMEDIÁRIO":{
+    titulo:"🌎 SUA EMPRESA ESTÁ NO NÍVEL INTERMEDIÁRIO",
+    lead:"Sua empresa já avançou na preparação para o mercado internacional!",
+    textos:[
+      "O resultado do diagnóstico indica que sua empresa apresenta um nível intermediário de maturidade exportadora, demonstrando que já possui conhecimentos, experiências ou estruturas importantes para a internacionalização.",
+      "Agora, o principal desafio é fortalecer sua estratégia comercial e aperfeiçoar os aspectos necessários para competir em outros mercados."],
+    passosTitulo:"Quais devem ser os próximos passos?",
+    passos:[
+      "Estruturar ou aperfeiçoar a formação de preços para exportação.",
+      "Identificar mercados internacionais com maior potencial para seus produtos ou serviços.",
+      "Desenvolver materiais comerciais e canais digitais em outros idiomas.",
+      "Avaliar a adequação de rótulos, embalagens e certificações internacionais.",
+      "Fortalecer a proteção da marca nos mercados de interesse.",
+      "Elaborar um planejamento estratégico internacional."],
+    curso:"No curso “Exportar, Você Também Pode!”, você poderá aprofundar seus conhecimentos e compreender como transformar a preparação da sua empresa em oportunidades comerciais.",
+    fecho:"Você já deu passos importantes. Agora é hora de planejar como chegar mais longe!",
+    tag:"🌎 Sua empresa pode estar mais próxima do mercado internacional do que imagina."},
+  "AVANÇADO":{
+    titulo:"🚀 SUA EMPRESA ESTÁ NO NÍVEL AVANÇADO",
+    lead:"Sua empresa demonstra um elevado grau de maturidade para a internacionalização!",
+    textos:[
+      "O resultado do diagnóstico indica que sua empresa apresenta conhecimentos, experiências e condições favoráveis para avançar no mercado internacional.",
+      "Isso significa que o momento é propício para direcionar esforços à identificação de oportunidades comerciais, à aproximação com compradores estrangeiros e ao fortalecimento da sua presença internacional."],
+    passosTitulo:"Quais devem ser os próximos passos?",
+    passos:[
+      "Realizar pesquisas de mercado para identificar países e compradores potenciais.",
+      "Desenvolver estratégias de prospecção comercial internacional.",
+      "Preparar apresentações e propostas comerciais para compradores estrangeiros.",
+      "Participar de feiras internacionais, missões empresariais e rodadas de negócios.",
+      "Aperfeiçoar técnicas de negociação e logística internacional.",
+      "Avaliar alternativas de financiamento e estratégias de expansão das exportações."],
+    curso:"No curso “Exportar, Você Também Pode!”, você poderá aperfeiçoar sua visão estratégica e identificar caminhos para ampliar sua atuação no comércio internacional.",
+    fecho:"Sua empresa já possui uma base importante. Agora é hora de transformar esse potencial em negócios internacionais!",
+    tag:"🌎 O próximo grande cliente da sua empresa pode estar em outro país."},
+};
+
 const answers = new Array(QUESTIONS.length).fill(null);
 const $ = id => document.getElementById(id);
 
@@ -311,19 +375,24 @@ function renderConsult(done, lv, score){
     return;
   }
   const list = CONSULTORIAS[lv.name];
-  const gaps = QUESTIONS.map((q,i)=>({q,i})).filter(x=>answers[x.i]==="nao");
+  const m = MENSAGENS[lv.name];
   box.innerHTML = `
     <div class="lvl-steps">${LEVELS.map(l=>`<div class="lvl-step${l===lv?" on":""}" style="--c:var(${l.color})"><b>${l.name}</b><span>${l.min}–${l.max} pts</span></div>`).join("")}</div>
     <div class="cons-head">
       <div class="lvl-badge"><span class="dot"></span><span><small>Nível</small><br>${lv.name}</span></div>
       <span class="pill">${score} pontos · ${list.length} consultorias</span>
     </div>
-    <ul class="clist">${list.map(c=>`<li>${esc(c)}</li>`).join("")}</ul>
-    <div class="gaps">
-      <h4>Pontos a desenvolver (respostas Não)</h4>
-      ${gaps.length ? `<ul>${gaps.map(g=>`<li>${g.i+1}. ${esc(g.q.t)}</li>`).join("")}</ul>`
-                    : `<p class="empty">Nenhum. Todas as respostas foram Sim.</p>`}
-    </div>`;
+    <div class="msg">
+      <h3>${esc(m.titulo)}</h3>
+      <p class="lead">${esc(m.lead)}</p>
+      ${m.textos.map(t=>`<p>${esc(t)}</p>`).join("")}
+      <h4>${esc(m.passosTitulo)}</h4>
+      <ul>${m.passos.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+      <p class="course">${esc(m.curso)}</p>
+      <p class="close">${esc(m.fecho)}</p>
+      <p class="tag">${esc(m.tag)}</p>
+    </div>
+    <ul class="clist">${list.map(c=>`<li>${esc(c)}</li>`).join("")}</ul>`;
 }
 
 function resultText(){
@@ -342,6 +411,15 @@ function resultText(){
     "",
     `Pontuação: ${score}/100`,
     `Nível de maturidade: ${lv.name}`,
+    "",
+    MENSAGENS[lv.name].titulo,
+    MENSAGENS[lv.name].lead,
+    ...MENSAGENS[lv.name].textos,
+    MENSAGENS[lv.name].passosTitulo,
+    ...MENSAGENS[lv.name].passos.map(t=>`• ${t}`),
+    MENSAGENS[lv.name].curso,
+    MENSAGENS[lv.name].fecho,
+    MENSAGENS[lv.name].tag,
     "",
     "Respostas:",
     ...QUESTIONS.map((q,i)=>`${i+1}. ${q.t} ${answers[i]==="sim"?"Sim":"Não"}`),
