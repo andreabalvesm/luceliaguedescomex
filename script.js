@@ -144,4 +144,19 @@ document.addEventListener('DOMContentLoaded', () => {
             ? '0 4px 24px rgba(0,0,0,0.4)'
             : 'none';
     });
+
+    // Meta Pixel — track CTA clicks (WhatsApp, checkout, email)
+    document.addEventListener('click', e => {
+        const link = e.target.closest('a[href]');
+        if (!link || typeof fbq !== 'function') return;
+        const href = link.href;
+        const label = link.textContent.trim();
+        if (href.includes('wa.me')) {
+            fbq('track', 'Contact', { content_name: label, channel: 'whatsapp' });
+        } else if (href.includes('kiwify.com')) {
+            fbq('track', 'InitiateCheckout', { content_name: label });
+        } else if (href.startsWith('mailto:')) {
+            fbq('track', 'Contact', { content_name: label, channel: 'email' });
+        }
+    });
 });
