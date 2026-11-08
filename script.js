@@ -9,8 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!target) return;
             e.preventDefault();
             const offset = 80;
-            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top, behavior: 'smooth' });
+            const getTop = () => target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+            // Lazy images above the target load during the scroll and push it down
+            // (mostly on mobile), so keep re-aiming until the position settles.
+            let lastTop = getTop();
+            window.scrollTo({ top: lastTop, behavior: 'smooth' });
+            let checks = 0;
+            const timer = setInterval(() => {
+                const top = getTop();
+                if (Math.abs(top - lastTop) > 2) {
+                    lastTop = top;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+                if (++checks >= 20) clearInterval(timer);
+            }, 150);
+            const stop = () => clearInterval(timer);
+            window.addEventListener('touchstart', stop, { once: true, passive: true });
+            window.addEventListener('wheel', stop, { once: true, passive: true });
         });
     });
 
